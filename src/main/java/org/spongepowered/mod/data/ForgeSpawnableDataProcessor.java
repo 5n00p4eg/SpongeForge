@@ -51,8 +51,8 @@ public class ForgeSpawnableDataProcessor extends SpawnableDataProcessor {
         if (this.supports(container)) {
             ItemStack item = (ItemStack) (Object) container;
             item.setItemDamage(0);
-            if (item.hasTagCompound() && item.getTagCompound().hasKey(NbtDataUtil.FORGE_ENTITY_TYPE, NbtDataUtil.TAG_STRING)) {
-                item.getTagCompound().removeTag(NbtDataUtil.FORGE_ENTITY_TYPE);
+            if (item.hasTagCompound() && item.getTagCompound().hasKey(NbtDataUtil.Compatibility.Forge.FORGE_ENTITY_TYPE, NbtDataUtil.TAG_STRING)) {
+                item.getTagCompound().removeTag(NbtDataUtil.Compatibility.Forge.FORGE_ENTITY_TYPE);
             }
             return DataTransactionResult.successNoData();
         }
@@ -74,7 +74,7 @@ public class ForgeSpawnableDataProcessor extends SpawnableDataProcessor {
                 itemStack.setTagCompound(new NBTTagCompound());
             }
             NBTTagCompound tag = itemStack.getTagCompound();
-            tag.setString(NbtDataUtil.FORGE_ENTITY_TYPE, name);
+            tag.setString(NbtDataUtil.Compatibility.Forge.FORGE_ENTITY_TYPE, name);
             final EntityRegistry.EntityRegistration registration = EntityRegistry.instance()
                     .lookupModSpawn((Class<? extends Entity>) value.getEntityClass(), false);
             itemStack.setItemDamage(registration.getModEntityId());

@@ -86,7 +86,7 @@ public abstract class MixinEventLivingDeath extends MixinEventLiving implements 
         if (this.source instanceof EntityDamageSource) {
             EntityDamageSource damageSource = (EntityDamageSource) this.source;
             IMixinEntity spongeEntity = (IMixinEntity) damageSource.getSourceOfDamage();
-            sourceCreator = spongeEntity.getTrackedPlayer(NbtDataUtil.SPONGE_ENTITY_CREATOR);
+            sourceCreator = spongeEntity.getTrackedPlayer(NbtDataUtil.Entity.SPONGE_ENTITY_CREATOR);
         }
         if (sourceCreator.isPresent()) {
             this.cause = Cause.of(NamedCause.source(this.source), NamedCause.of("Victim", this.entityLiving),

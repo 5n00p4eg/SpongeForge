@@ -46,8 +46,8 @@ public class MixinBlockRailBase {
     @Inject(method = "onMinecartPass", at = @At(value = "HEAD"))
     public void onMinecartRailPass(World world, net.minecraft.entity.item.EntityMinecart cart, BlockPos pos, CallbackInfo ci) {
         IMixinEntity spongeEntity = (IMixinEntity) cart;
-        Optional<User> notifier = spongeEntity.getTrackedPlayer(NbtDataUtil.SPONGE_ENTITY_NOTIFIER);
-        Optional<User> owner = spongeEntity.getTrackedPlayer(NbtDataUtil.SPONGE_ENTITY_CREATOR);
+        Optional<User> notifier = spongeEntity.getTrackedPlayer(NbtDataUtil.Entity.SPONGE_ENTITY_NOTIFIER);
+        Optional<User> owner = spongeEntity.getTrackedPlayer(NbtDataUtil.Entity.SPONGE_ENTITY_CREATOR);
         if (owner.isPresent() || notifier.isPresent()) {
             IMixinChunk spongeChunk = (IMixinChunk) world.getChunkFromBlockCoords(pos);
             if (notifier.isPresent()) {
